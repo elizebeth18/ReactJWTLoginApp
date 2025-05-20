@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import MainOutlet from './Outlet';
+import Outlet from './Outlet';
 import Header from './Header';
 import Footer from './Footer';
 import Login from './Login';
@@ -15,10 +15,14 @@ const Routing = () => {
         <>
             <BrowserRouter>
                 <Header/>
-                <Login />
-                <Profile />
-                <Register />
-                <UserList />
+                <Routes>
+                    <Route path='/' element={<Outlet/>}>
+                        <Route index element={<Login/>} />
+                        <Route path='/profile' element={<Profile/>} />
+                        <Route path='*' element={<NotFound />} />
+                    </Route>
+                </Routes>
+                
                 <Footer />
             </BrowserRouter>
         </>
